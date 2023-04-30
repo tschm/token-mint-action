@@ -28,4 +28,4 @@ runs:
         # extract the token from the response
         api_token=$(jq -r '.token' <<< "${resp}")
 
-	      echo "api-token=$api_token" >> $GITHUB_OUTPUT
+        echo "api-token=$api_token" >> $GITHUB_OUTPUT
