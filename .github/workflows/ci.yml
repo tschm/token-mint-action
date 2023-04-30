@@ -25,7 +25,7 @@ jobs:
         id: mint
         uses: ./
         with:
-          audience: pypi
+          # audience: pypi
           request-url: $ACTIONS_ID_TOKEN_REQUEST_URL
           request-token: $ACTIONS_ID_TOKEN_REQUEST_TOKEN
 
