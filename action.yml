@@ -1,4 +1,4 @@
-name: 'Token Mint'
+name: 'PyPI Token Mint'
 description: 'Create API token'
 
 outputs:
