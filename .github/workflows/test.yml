@@ -25,8 +25,8 @@ jobs:
         id: mint
         uses: tschm/token-mint-action@0.0.4
         with:
-          request-url: ${{ ACTIONS_ID_TOKEN_REQUEST_URL }}
-          request-token: ${{ ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
+          request-url: ${ACTIONS_ID_TOKEN_REQUEST_URL}
+          request-token: ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}
           
       - name: Check
         run: echo '${{ steps.mint.outputs.api-token }}'
