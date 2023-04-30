@@ -23,7 +23,7 @@ jobs:
           
       - name: Mint token
         id: mint
-        uses: tschm/token-mint-action@0.0.2
+        uses: tschm/token-mint-action@0.0.4
         with:
           request-url: $ACTIONS_ID_TOKEN_REQUEST_URL
           request-token: $ACTIONS_ID_TOKEN_REQUEST_TOKEN
