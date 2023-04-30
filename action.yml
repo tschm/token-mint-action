@@ -28,7 +28,7 @@ runs:
     - id: mint
       shell: bash
       run: |
-        resp=$(curl -H "Authorization: bearer ${{ inputs.request-token }} \
+        resp=$(curl -H "Authorization: bearer ${{ inputs.request-token }}" \
                        "${{ inputs.request-url }}&audience=${{ inputs.audience }}")
 
         # extract the token from the response
