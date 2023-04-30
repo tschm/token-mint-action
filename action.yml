@@ -34,4 +34,7 @@ runs:
         # extract the token from the response
         api_token=$(jq -r '.token' <<< "${resp}")
 
+        # mask the newly minted API token, so that we don't accidentally leak it
+        echo "::add-mask::${api_token}"
+             
         echo "api-token=$api_token" >> $GITHUB_OUTPUT
