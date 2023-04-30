@@ -7,12 +7,12 @@ inputs:
     required: true
     default: 'pypi'
     
-  request_token:
-     description: 'request_token'
+  request-token:
+     description: 'request-token'
      required: true
      
-   request_url:
-      description: 'request_url'
+   request-url:
+      description: 'request-url'
       required: true
    
 outputs:
@@ -27,8 +27,8 @@ runs:
     - id: mint
       shell: bash
       run: |
-        resp=$(curl -H "Authorization: bearer ${{ inputs.request_token }}" \
-                       "${{ inputs.request_url }}&audience=${{ inputs.audience }}")
+        resp=$(curl -H "Authorization: bearer ${{ inputs.request-token }}" \
+                       "${{ inputs.request-url }}&audience=${{ inputs.audience }}")
 
         # extract the token from the response
         oidc_token=$(jq -r '.value' <<< "${resp}")
