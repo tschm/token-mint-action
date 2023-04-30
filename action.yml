@@ -1,10 +1,6 @@
 name: 'Token Mint'
 description: 'Create API token'
-#inputs:
-#  who-to-greet:  # id of input
-#    description: 'Who to greet'
-#    required: true
-#    default: $ACTIONS_ID_TOKEN_REQUEST_TOKEN
+
 outputs:
   api-token:
     description: "api token"
@@ -12,9 +8,6 @@ outputs:
 runs:
   using: "composite"
   steps:
-    
-    #- run: echo Hello ${{ inputs.who-to-greet }}.
-    #  shell: bash
     - id: mint
       run: 
 	|
@@ -37,7 +30,3 @@ runs:
 	#echo "api=token=$(echo $RANDOM)" >> $GITHUB_OUTPUT
       
       shell: bash
-    #- run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-    #  shell: bash
-    #- run: goodbye.sh
-    #  shell: bash
