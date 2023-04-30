@@ -6,16 +6,16 @@ inputs:
     description: 'audience'
     required: true
     default: 'pypi'
-
-  request-token:
-    description: 'request-token'
-    required: true
-    default: $ACTIONS_ID_TOKEN_REQUEST_TOKEN
-
-  request-url:
-    description: 'request-url'
-    required: true
-    default: $ACTIONS_ID_TOKEN_REQUEST_URL
+#
+#  request-token:
+#    description: 'request-token'
+#    required: true
+#    default: $ACTIONS_ID_TOKEN_REQUEST_TOKEN
+#
+#  request-url:
+#    description: 'request-url'
+#    required: true
+#    default: $ACTIONS_ID_TOKEN_REQUEST_URL
 
 outputs:
   api-token:
@@ -29,8 +29,8 @@ runs:
     - id: mint
       shell: bash
       run: |
-        resp=$(curl -H "Authorization: bearer ${{ inputs.request-token }}" \
-                       "${{ inputs.request-url }}&audience=${{ inputs.audience }}")
+        resp=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+                       "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${{ inputs.audience }}")
 
         # extract the token from the response
         oidc_token=$(jq -r '.value' <<< "${resp}")
