@@ -1,7 +1,7 @@
 name: CI
 
 on: workflow_dispatch
-  
+
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -13,13 +13,13 @@ jobs:
       - name: Checkout [${{ github.repository }}]
         uses: actions/checkout@v3
 
-      - name: Mint
+      - name: Mint token
         id: mint
-        env:
-          ACTIONS_ID_TOKEN_REQUEST_URL: ${{ env.ACTIONS_ID_TOKEN_REQUEST_URL }}
-          ACTIONS_ID_TOKEN_REQUEST_TOKEN: ${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
         uses: ./
+        with:
+          audience: pypi
+          request-url: ${{ env.ACTIONS_ID_TOKEN_REQUEST_URL }}
+          request-token: ${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
 
       - name: Check
-        run: |
-          echo '${{ steps.mint.outputs.api-token }}'
+        run: echo '${{ steps.mint.outputs.api-token }}'
