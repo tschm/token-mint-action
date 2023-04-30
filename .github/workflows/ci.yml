@@ -15,7 +15,7 @@ jobs:
       - name: Checkout [${{ github.repository }}]
         uses: actions/checkout@v3
      
-      - name: Verify environment variables 2
+      - name: Verify environment variables
         run: |
           echo  "URL: $ACTIONS_ID_TOKEN_REQUEST_URL"
           # This one is not displayed as it is protected...
@@ -24,10 +24,10 @@ jobs:
       - name: Mint token
         id: mint
         uses: ./
-        with:
+        #with:
           # audience: pypi
-          request-url: $ACTIONS_ID_TOKEN_REQUEST_URL
-          request-token: $ACTIONS_ID_TOKEN_REQUEST_TOKEN
+        #  request-url: $ACTIONS_ID_TOKEN_REQUEST_URL
+        #  request-token: $ACTIONS_ID_TOKEN_REQUEST_TOKEN
 
       - name: Check
         run: echo '${{ steps.mint.outputs.api-token }}'
