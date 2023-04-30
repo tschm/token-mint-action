@@ -1,0 +1,16 @@
+name: CI
+
+on: workflow_dispatch
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Mint
+        id: mint
+        uses: ./
+
+      - name: Check
+        run: |
+          echo '${{ steps.mint.outputs.api-token }}'
