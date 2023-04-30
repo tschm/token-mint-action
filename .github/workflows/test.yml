@@ -23,7 +23,9 @@ jobs:
           
       - name: Mint token
         id: mint
-        uses: tschm/token-mint-action@0.0.3
+        uses: tschm/token-mint-action@0.0.2
+        with:
+          
 
       - name: Check
         run: echo '${{ steps.mint.outputs.api-token }}'
