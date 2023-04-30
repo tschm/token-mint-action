@@ -10,7 +10,6 @@ inputs:
   request-token:
     description: 'request-token'
     required: true
-    default: $ACTIONS_ID_TOKEN_REQUEST_URL
     
   request-url:
     description: 'request-url'
