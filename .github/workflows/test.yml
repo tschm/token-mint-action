@@ -23,9 +23,7 @@ jobs:
           
       - name: Mint token
         id: mint
-        uses: tschm/token-mint-action@v1
-        #with:
-        #   audience: pypi
+        uses: tschm/token-mint-action@0.0.3
 
       - name: Check
         run: echo '${{ steps.mint.outputs.api-token }}'
