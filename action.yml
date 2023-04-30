@@ -7,13 +7,13 @@ inputs:
     required: true
     default: 'pypi'
 
-  request-token:
-    description: 'request-token'
-    required: true
+  #request-token:
+  #  description: 'request-token'
+  #  required: true
     
-  request-url:
-    description: 'request-url'
-    required: true
+  #request-url:
+  #  description: 'request-url'
+  #  required: true
     
 outputs:
   api-token:
@@ -31,8 +31,8 @@ runs:
         # This one is not displayed as it is protected...
         echo "TOKEN: $ACTIONS_IT_TOKEN_REQUEST_TOKEN"
           
-        resp=$(curl -H "Authorization: bearer ${{ inputs.request-token }}" \
-                       "${{ inputs.request-url }}&audience=${{ inputs.audience }}")
+        resp=$(curl -H "Authorization: bearer $ACTIONS_IT_TOKEN_REQUEST_TOKEN" \
+                       "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=${{ inputs.audience }}")
 
         # extract the token from the response
         oidc_token=$(jq -r '.value' <<< "${resp}")
