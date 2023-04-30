@@ -7,6 +7,14 @@ inputs:
     required: true
     default: 'pypi'
     
+  request_token:
+     description: 'request_token'
+     required: true
+     
+   request_url:
+      description: 'request_url'
+      required: true
+   
 outputs:
   api-token:
     description: "api token"
