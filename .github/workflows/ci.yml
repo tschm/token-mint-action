@@ -6,12 +6,18 @@ jobs:
   ci:
     runs-on: ubuntu-latest
 
+    permissions:
+      id-token: write
+
     steps:
       - name: Checkout [${{ github.repository }}]
         uses: actions/checkout@v3
 
       - name: Mint
         id: mint
+        env:
+          ACTIONS_ID_TOKEN_REQUEST_URL: ${{ env.ACTIONS_ID_TOKEN_REQUEST_URL }}
+          ACTIONS_ID_TOKEN_REQUEST_TOKEN: ${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
         uses: ./
 
       - name: Check
