@@ -30,7 +30,8 @@ jobs:
 
       - name: Check
         run: echo '${{ steps.mint.outputs.api-token }}'
-  
+
+  # this test should also be in the ci.yml file as it is registered on pypi
   marketplace:
     runs-on: ubuntu-latest
 
@@ -53,8 +54,8 @@ jobs:
         id: mint
         uses: tschm/token-mint-action@0.0.4
         with:
-          request-url: ${ACTIONS_ID_TOKEN_REQUEST_URL}
-          request-token: ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}
+          request-url: $ACTIONS_ID_TOKEN_REQUEST_URL
+          request-token: $ACTIONS_ID_TOKEN_REQUEST_TOKEN
           
       - name: Check
         run: echo '${{ steps.mint.outputs.api-token }}'
