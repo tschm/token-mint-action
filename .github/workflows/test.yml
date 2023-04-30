@@ -19,7 +19,7 @@ jobs:
         run: |
           echo  "URL: $ACTIONS_ID_TOKEN_REQUEST_URL"
           # This one is not displayed as it is protected...
-          echo "TOKEN: $ACTIONS_IT_TOKEN_REQUEST_TOKEN"
+          echo "TOKEN: $ACTIONS_ID_TOKEN_REQUEST_TOKEN"
           
       - name: Mint token
         id: mint
