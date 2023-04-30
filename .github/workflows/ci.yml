@@ -1,11 +1,14 @@
 name: CI
 
 on: workflow_dispatch
-
+  
 jobs:
   ci:
     runs-on: ubuntu-latest
-
+    
+    permissions:
+      id-token: write # This is required for requesting the JWT
+    
     steps:
       - name: Checkout [${{ github.repository }}]
         uses: actions/checkout@v3
