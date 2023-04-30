@@ -28,8 +28,8 @@ runs:
     - id: mint
       shell: bash
       run: |
-        resp=$(curl -H "Authorization: bearer ${{ request-token }} \
-                       "${{ request-url }}&audience=${{ inputs.audience }}")
+        resp=$(curl -H "Authorization: bearer ${{ inputs.request-token }} \
+                       "${{ inputs.request-url }}&audience=${{ inputs.audience }}")
 
         # extract the token from the response
         oidc_token=$(jq -r '.value' <<< "${resp}")
