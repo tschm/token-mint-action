@@ -1,6 +1,12 @@
 name: 'PyPI Token Mint'
 description: 'Create API token'
 
+inputs:
+  audience:      # id of input
+    description: 'audience'
+    required: true
+    default: 'pypi'
+    
 outputs:
   api-token:
     description: "api token"
