@@ -1,0 +1,43 @@
+name: 'Token Mint'
+description: 'Create API token'
+#inputs:
+#  who-to-greet:  # id of input
+#    description: 'Who to greet'
+#    required: true
+#    default: $ACTIONS_ID_TOKEN_REQUEST_TOKEN
+outputs:
+  api-token:
+    description: "api token"
+    value: ${{ steps.mint.outputs.api-token }}
+runs:
+  using: "composite"
+  steps:
+    
+    #- run: echo Hello ${{ inputs.who-to-greet }}.
+    #  shell: bash
+    - id: mint
+      run: 
+	|
+        resp=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+                       "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=pypi")
+
+        # extract the token from the response
+        oidc_token=$(jq -r '.value' <<< "${resp}")            
+            
+        # and move the token into json format
+        oidc_token="{\"token\":\"${oidc_token}\"}"
+            
+        # use the oidc token to request an api token
+        resp=$(curl -X POST https://pypi.org/_/oidc/github/mint-token -d $oidc_token)
+            
+        # extract the token from the response
+        api_token=$(jq -r '.token' <<< "${resp}")
+
+	echo "api-token=$api_token" >> $GITHUB_OUTPUT 
+	#echo "api=token=$(echo $RANDOM)" >> $GITHUB_OUTPUT
+      
+      shell: bash
+    #- run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+    #  shell: bash
+    #- run: goodbye.sh
+    #  shell: bash
