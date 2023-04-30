@@ -15,7 +15,7 @@ jobs:
       - name: Checkout [${{ github.repository }}]
         uses: actions/checkout@v3
      
-      - name: Verify environment variables
+      - name: Verify environment variables 2
         run: |
           echo  "URL: $ACTIONS_ID_TOKEN_REQUEST_URL"
           # This one is not displayed as it is protected...
