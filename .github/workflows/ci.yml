@@ -30,3 +30,33 @@ jobs:
 
       - name: Check
         run: echo '${{ steps.mint.outputs.api-token }}'
+  
+  marketplace:
+    runs-on: ubuntu-latest
+
+    # https://github.com/glassechidna/ghaoidc/issues/1
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout [${{ github.repository }}]
+        uses: actions/checkout@v3
+     
+      - name: Verify environment variables
+        run: |
+          echo  "URL: $ACTIONS_ID_TOKEN_REQUEST_URL"
+          # This one is not displayed as it is protected...
+          echo "TOKEN: $ACTIONS_ID_TOKEN_REQUEST_TOKEN"
+          
+      - name: Mint token
+        id: mint
+        uses: tschm/token-mint-action@0.0.4
+        with:
+          request-url: ${ACTIONS_ID_TOKEN_REQUEST_URL}
+          request-token: ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}
+          
+      - name: Check
+        run: echo '${{ steps.mint.outputs.api-token }}'
+
+
