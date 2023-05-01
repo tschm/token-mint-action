@@ -62,8 +62,8 @@ Permissions are discussed [here](https://github.com/glassechidna/ghaoidc/issues/
 
 ## Publish a Python package with Poetry
 
-All our experiments have been performed with the [pyhrp](https://github.com/tschm/pyhrp) package.
-It's an implementation of the hierarchical risk parity algorithm. It's a package relying on 
+All our experiments have been performed with the [pyhrp](https://github.com/tschm/pyhrp) package
+relying on 
 [poetry](https://python-poetry.org).
 
 Using the new action the [release.yml](https://github.com/tschm/pyhrp/blob/main/.github/workflows/release.yml) file is
@@ -113,7 +113,7 @@ jobs:
 
 ## Troubleshooting
 
-The creation of an API token rarely fails for two reasons
+The creation of an API token rarely fails for two reasons:
 
 * There is a mismatch between the name of the *.yml file and the trusted publisher configured on PyPI. 
 * The permissions are not set.
