@@ -20,10 +20,10 @@ runs:
       run: |
         env_vars_found=true
         if [[ -z $ACTIONS_ID_TOKEN_REQUEST_TOKEN ]]; then
-          echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN is not defined.
+          echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN is not defined."
           env_vars_found=false
         elif [[ -z $ACTIONS_ID_TOKEN_REQUEST_URL ]]; then
-          echo "ACTIONS_ID_TOKEN_REQUEST_URL is not defined.
+          echo "ACTIONS_ID_TOKEN_REQUEST_URL is not defined."
           env_vars_found=false
         fi
 
