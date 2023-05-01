@@ -143,3 +143,11 @@ The creation of an API token rarely fails for two reasons:
 - There is a mismatch between the name of the *.yml file and the trusted
   publisher configured on PyPI.
 - The permissions are not set.
+
+## Contributing
+
+Contributions are always welcome; submit a PR!
+
+## License
+
+install-poetry is licensed under an Apache license. See the license file for details.
