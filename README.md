@@ -131,7 +131,7 @@ jobs:
 
       - name: Mint token
         id: mint
-        uses: tschm/token-mint-action@0.0.5
+        uses: tschm/token-mint-action@v1.0.0
 
       - name: Publish the package with poetry
         run: |
