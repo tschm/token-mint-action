@@ -4,33 +4,37 @@ description: 'Create API token'
 inputs:
   audience:
     description: 'audience'
-    required: true
     default: 'pypi'
 
 outputs:
   api-token:
-    description: "api token"
+    description: 'api token'
     value: '${{ steps.mint.outputs.api-token }}'
 
 runs:
-  using: "composite"
-  
+  using: composite
+
   steps:
     - id: mint
       shell: bash
       run: |
-        if [ -z "$ACTIONS_ID_TOKEN_REQUEST_TOKEN" ]
-        then
-          echo "The request token is not defined. Make sure\n a) Permission are set correctly\n b) The .yml is registered as a trusted publisher\n Details are described here."
+        env_vars_found=true
+        if [[ -z $ACTIONS_ID_TOKEN_REQUEST_TOKEN ]]; then
+          echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN is not defined.
+          env_vars_found=false
+        elif [[ -z $ACTIONS_ID_TOKEN_REQUEST_URL ]]; then
+          echo "ACTIONS_ID_TOKEN_REQUEST_URL is not defined.
+          env_vars_found=false
+        fi
+
+        if [[ $env_vars_found == false ]]; then
+          echo "Make sure that:"
+          echo "a) Permission are set correctly"
+          echo "b) The .yml is registered as a trusted publisher"
+          echo "See https://github.com/tschm/token-mint-action/blob/main/README.md."
           exit 1
         fi
-      
-        if [ -z "$ACTIONS_ID_TOKEN_REQUEST_URL" ]
-        then
-          echo "The request url is not defined. Make sure\n a) Permission are set correctly\n b) The .yml is registered as a trusted publisher\n Details are described here."
-          exit 1
-        fi
-        
+
         resp=$(curl -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
                        "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${{ inputs.audience }}")
 
@@ -48,5 +52,5 @@ runs:
 
         # mask the newly minted API token, so that we don't accidentally leak it
         echo "::add-mask::${api_token}"
-             
+
         echo "api-token=$api_token" >> $GITHUB_OUTPUT
