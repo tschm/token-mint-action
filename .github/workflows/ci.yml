@@ -19,38 +19,14 @@ jobs:
     steps:
       - name: Checkout [${{ github.repository }}]
         uses: actions/checkout@v3
-          
-      - name: Mint token
-        id: mint
-        uses: ./
-
-      - name: Check
-        run: echo '${{ steps.mint.outputs.api-token }}'
-
-  # this test should also be in the ci.yml file as it is registered on pypi
-  marketplace:
-    runs-on: ubuntu-latest
-
-    # https://github.com/glassechidna/ghaoidc/issues/1
-    # If not set the environment variables $ACTIONS_ID_... won't exist
-    permissions:
-      id-token: write
-      contents: read
-
-    steps:
-      # checkout 
-      - name: Checkout [${{ github.repository }}]
-        uses: actions/checkout@v3
       
       # The minting will only be successful if
       # a) the permission are set correctly (see above)
       # b) the yml file is registered as trusted publisher on pypi
       - name: Mint token
         id: mint
-        uses: tschm/token-mint-action@0.0.5
-      
+        uses: ./
+
       # Note that the api-token is masked. It will displayed as ***
       - name: Check
         run: echo '${{ steps.mint.outputs.api-token }}'
-
-
