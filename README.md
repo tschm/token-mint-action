@@ -1,5 +1,7 @@
 # [PyPI Token Mint](https://github.com/marketplace/actions/pypi-token-mint)
 
+[![CI](https://github.com/tschm/token-mint-action/actions/workflows/ci.yml/badge.svg)](https://github.com/tschm/token-mint-action/actions/workflows/ci.yml)
+
 Creates an api token for trusted publishing in pypi.
 
 ## [Getting started](https://docs.pypi.org/trusted-publishers/)
