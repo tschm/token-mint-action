@@ -152,4 +152,4 @@ Contributions are always welcome; submit a PR!
 
 ## License
 
-install-poetry is licensed under an Apache license. See the license file for details.
+install-poetry is licensed under an Apache license. See the LICENSE file for details.
