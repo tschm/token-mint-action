@@ -4,7 +4,7 @@ Creates an api token for trusted publishing in pypi
 
 ## [Getting started](https://docs.pypi.org/trusted-publishers/)
 
-"Trusted publishing" is our term for using the OpenID Connect (OIDC) 
+"Trusted publishing" is a term for using the OpenID Connect (OIDC) 
 standard to exchange short-lived identity tokens between a 
 trusted third-party service and PyPI. 
 This method can be used in automated environments and 
@@ -33,7 +33,7 @@ Release automation (like GitHub Actions) can submit an
 OIDC token to PyPI. The token will be matched against configurations 
 trusted by different projects; if any projects trust the token's configuration, 
 then PyPI will mint a short-lived API token for those projects and return it;
-The short-lived **API token** behaves exactly like a normal project-scoped API token, 
+The short-lived *API token* behaves exactly like a normal project-scoped API token, 
 except that it's only valid for 15 minutes from time of creation 
 (enough time for the CI to use it to upload packages).
 This confers significant usability and security advantages 
