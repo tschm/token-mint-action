@@ -8,8 +8,34 @@ on:
   workflow_dispatch:
 
 jobs:
-  ci:
+  fail:
     runs-on: ubuntu-latest
+
+    # Expect to fail in the absence of the required permissions
+    # This job should be successful though
+    continue-on-error: true
+
+    steps:
+      - name: Checkout [${{ github.repository }}]
+        uses: actions/checkout@v3
+
+      # The minting will only be successful if
+      # a) the permission are set correctly (see above)
+      # b) the yml file is registered as trusted publisher on pypi
+      - name: Mint token
+        id: mint
+        uses: ./
+
+      # Note that the api-token is masked. It will displayed as ***
+      - name: Check
+        run: echo '${{ steps.mint.outputs.api-token }}'
+
+  pass:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
 
     # https://github.com/glassechidna/ghaoidc/issues/1
     permissions:
@@ -19,7 +45,7 @@ jobs:
     steps:
       - name: Checkout [${{ github.repository }}]
         uses: actions/checkout@v3
-      
+
       # The minting will only be successful if
       # a) the permission are set correctly (see above)
       # b) the yml file is registered as trusted publisher on pypi
