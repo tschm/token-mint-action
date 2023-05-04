@@ -1,6 +1,10 @@
 name: 'PyPI Token Mint'
 description: 'Create API token'
 
+branding:
+  icon: check-square
+  color: yellow
+
 inputs:
   audience:
     description: 'audience'
