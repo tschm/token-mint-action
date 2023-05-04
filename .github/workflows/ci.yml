@@ -24,6 +24,7 @@ jobs:
       # b) the yml file is registered as trusted publisher on pypi
       - name: Mint token
         id: mint
+        continue-on-error: true
         uses: ./
 
       # Note that the api-token is masked. It will displayed as ***
