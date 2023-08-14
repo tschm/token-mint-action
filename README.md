@@ -152,4 +152,5 @@ Contributions are always welcome; submit a PR!
 
 ## License
 
-The PyPI token mint action is licensed under an Apache license. See the LICENSE file for details.
+The PyPI token mint action is licensed under an Apache license.
+See the LICENSE file for details.
