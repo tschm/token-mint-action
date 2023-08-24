@@ -25,7 +25,9 @@ jobs:
       # Should be skipped as the mint step is expected to fail
       - name: Check
         if: ${{ steps.mint.outcome == 'success' }}
-        run: echo '${{ steps.mint.outputs.api-token }}'
+        run: |
+          echo '${{ steps.mint.outputs.api-token }}'
+          exit 1
 
   pass:
     strategy:
