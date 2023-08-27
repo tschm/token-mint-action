@@ -16,3 +16,5 @@ repos:
         # We don't really have any dependencies here, otherwise...
         #- id: check-dependabot
         - id: check-github-workflows
+        - id: check-github-actions
+          files: action.yml
