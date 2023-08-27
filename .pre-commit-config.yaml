@@ -19,4 +19,6 @@ repos:
           verbose: true
         - id: check-github-actions
           verbose: true
-          #files: action.yml
+          # if you name a file here that doesn't exist
+          # this step will be skipped.
+          files: action.yml
