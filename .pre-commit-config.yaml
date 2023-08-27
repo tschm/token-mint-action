@@ -17,4 +17,5 @@ repos:
         #- id: check-dependabot
         - id: check-github-workflows
         - id: check-github-actions
-          files: action.yml
+          verbose: true
+          #files: action.yml
