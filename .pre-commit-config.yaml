@@ -9,3 +9,10 @@ repos:
       rev: v0.35.0
       hooks:
           - id: markdownlint-fix
+
+    - repo: https://github.com/python-jsonschema/check-jsonschema
+      rev: 0.26.1
+      hooks:
+        # We don't really have any dependencies here, otherwise...
+        #- id: check-dependabot
+        - id: check-github-workflows
