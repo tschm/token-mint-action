@@ -1,6 +1,7 @@
 # [PyPI Token Mint](https://github.com/marketplace/actions/pypi-token-mint)
 
 [![CI](https://github.com/tschm/token-mint-action/actions/workflows/ci.yml/badge.svg)](https://github.com/tschm/token-mint-action/actions/workflows/ci.yml)
+[![Apache 2.0 License](https://img.shields.io/badge/License-APACHEv2-brightgreen.svg)](https://github.com/tschm/token-mint-action/blob/master/LICENSE)
 
 Creates an api token for trusted publishing in pypi.
 
