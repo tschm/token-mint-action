@@ -16,9 +16,7 @@ repos:
         # We don't really have any dependencies here, otherwise...
         #- id: check-dependabot
         - id: check-github-workflows
-          verbose: true
           args: ["--verbose"]
 
         - id: check-github-actions
-          verbose: true
           args: ["--verbose"]
