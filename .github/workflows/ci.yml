@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout [${{ github.repository }}]
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Expect to fail in the absence of the required permissions
       # This job should be successful though
@@ -43,7 +43,7 @@ jobs:
 
     steps:
       - name: Checkout [${{ github.repository }}]
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # The minting will only be successful if
       # a) the permission are set correctly (see above)
