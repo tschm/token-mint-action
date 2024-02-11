@@ -114,15 +114,15 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python 3.10
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
       - name: Install Poetry
-        uses: snok/install-poetry@v1.3.3
+        uses: snok/install-poetry@v1
         with:
           virtualenvs-create: false
 
@@ -133,7 +133,7 @@ jobs:
 
       - name: Mint token
         id: mint
-        uses: tschm/token-mint-action@v1.0.2
+        uses: tschm/token-mint-action@v1.0.3
 
       - name: Publish the package with poetry
         run: |
