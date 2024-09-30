@@ -6,12 +6,12 @@ repos:
           - id: trailing-whitespace
 
     - repo: https://github.com/igorshubovych/markdownlint-cli
-      rev: v0.41.0
+      rev: v0.42.0
       hooks:
           - id: markdownlint-fix
 
     - repo: https://github.com/python-jsonschema/check-jsonschema
-      rev: 0.29.2
+      rev: 0.29.3
       hooks:
         # We don't really have any dependencies here, otherwise...
         #- id: check-dependabot
