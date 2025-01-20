@@ -84,23 +84,14 @@ Permissions are discussed
 | :---------: | :---------- |
 | `api-token` | API token   |
 
-## Publish a Python package with Poetry
+## Publish a Python package
 
-All our experiments have been performed with the
-[pyhrp](https://github.com/tschm/pyhrp) package relying on
-[poetry](https://python-poetry.org).
-
-Using the new action the
-[release.yml](https://github.com/tschm/pyhrp/blob/main/.github/workflows/release.yml)
-file is:
+We assume a build workflow has produced 
+a 'dist' artifact. Such artifacts can be produced
+with 'uv build', 'poetry build', etc.
 
 ```yml
 name: Upload Python Package
-
-on:
-  push:
-    tags:
-    - '[0-9]+.[0-9]+.[0-9]'
 
 jobs:
   deploy:
@@ -112,30 +103,25 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v4
+      # Download the dist folder from the build job
+      - uses: actions/download-artifact@v4
         with:
-          python-version: '3.10'
+          name: dist
+          path: dist
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1.3.3
-        with:
-          virtualenvs-create: false
-
-      - name: Update version (kept at 0.0.0) in pyproject.toml and build
-        run: |
-          poetry version ${{ github.ref_name }}
-          poetry build
-
+      # Generate the token
       - name: Mint token
         id: mint
-        uses: tschm/token-mint-action@v1.0.2
-
-      - name: Publish the package with poetry
+        uses: tschm/token-mint-action@v1.0.3
+  
+      # Install twine and upload the dist folder using the token
+      - name: Publish the package
+        shell: bash
         run: |
-          poetry publish -u __token__ -p '${{ steps.mint.outputs.api-token }}'
+           pip install twine
+           twine upload --verbose -u __token__ -p '${{ steps.mint.outputs.api-token }}' dist/*
 ```
 
 ## Troubleshooting
