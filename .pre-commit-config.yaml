@@ -31,6 +31,6 @@ repos:
           args: [ -ignore, SC ]
 
     - repo: https://github.com/crate-ci/typos
-      rev: v1.29.9
+      rev: v1.29.10
       hooks:
         - id: typos
