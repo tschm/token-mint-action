@@ -5,9 +5,12 @@
     ":dependencyDashboard",
     ":semanticCommits"
   ],
-  "enabledManagers": ["pre-commit", "github-actions"],
+  "enabledManagers": [
+    "pre-commit",
+    "github-actions"
+  ],
   "timezone": "Asia/Dubai",
   "schedule": [
-      "before 10am every tuesday"
+    "before 10am on tuesday"
   ]
 }
