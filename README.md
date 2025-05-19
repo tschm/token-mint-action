@@ -71,8 +71,7 @@ permissions:
 Those permissions are critical; without it, GitHub Actions will refuse to give
 you an OIDC token.
 
-Permissions are discussed
-[here](https://github.com/glassechidna/ghaoidc/issues/1).
+[Permissions](https://github.com/glassechidna/ghaoidc/issues/1).
 
 ## Usage
 
