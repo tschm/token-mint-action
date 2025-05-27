@@ -2,7 +2,6 @@
 
 [![CI](https://github.com/tschm/token-mint-action/actions/workflows/ci.yml/badge.svg)](https://github.com/tschm/token-mint-action/actions/workflows/ci.yml)
 [![Apache 2.0 License](https://img.shields.io/badge/License-APACHEv2-brightgreen.svg)](https://github.com/tschm/token-mint-action/blob/master/LICENSE)
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/tschm/token-mint-action/main.svg)](https://results.pre-commit.ci/latest/github/tschm/token-mint-action/main)
 [![CodeFactor](https://www.codefactor.io/repository/github/tschm/token-mint-action/badge)](https://www.codefactor.io/repository/github/tschm/token-mint-action)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://github.com/renovatebot/renovate)
 
