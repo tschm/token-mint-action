@@ -5,6 +5,128 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/tschm/token-mint-action/badge)](https://www.codefactor.io/repository/github/tschm/token-mint-action)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://github.com/renovatebot/renovate)
 
+## ⚠️ **WARNING** 
+
+This action is today obsolete and is no longer maintained. 
+We recommend using [PyPI's native trusted publishing](https://docs.pypi.org/trusted-publishers/) 
+directly with GitHub Actions instead. See the [PyPI documentation](https://docs.pypi.org/trusted-publishers/using-a-publisher/) 
+for more information.
+
+## A note on publishing Python packages
+
+The Python ecosystem has historically been fragmented when it comes to packaging
+and publishing. With the rise of tools like Hatch, pyproject.toml standardization
+and secure integrations like PyPI's Trusted Publisher (OIDC), we can now build
+and release Python packages more securely, reproducibly and with less manual work.
+
+We share the process we follow. We split tagging, building, publication to PyPI
+into distinct jobs within the same workflow: 
+
+```yaml
+# Manual Release Workflow for Python Package using Hatch and Trusted Publisher (OIDC)
+#
+# This workflow implements a secure, maintainable release pipeline by separating concerns:
+#   - 🔖 Tagging the release (Git tag)
+#   - 🏗️ Building the package with Hatch
+#   - 🚀 Publishing to PyPI using OIDC (no passwords or secrets)
+#
+# 🔐 Security:
+#   - No PyPI credentials are stored; relies on Trusted Publishing via GitHub OIDC.
+#
+# 📄 Requirements:
+#   - `pyproject.toml` with a top-level `version = "..."`
+#   - Package is registered on PyPI as a Trusted Publisher with this repository
+#
+# ✅ To trigger:
+#   - Go to the "Actions" tab
+#   - Run this workflow manually with a tag input like `v1.2.3`
+
+name: Release Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g. v1.2.3)'
+        required: true
+        type: string
+
+jobs:
+  tag:
+    name: Create Git Tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Create Git Tag
+        run: | 
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git tag ${{ github.event.inputs.tag }}
+          git push origin ${{ github.event.inputs.tag }}
+
+  build:
+    name: Build with Hatch and Update Changelog
+    runs-on: ubuntu-latest
+    needs: tag
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Ensure full history and tags available
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Hatch
+        run: |
+          pip install --upgrade pip
+          pip install hatch
+
+      - name: Set version from tag in pyproject.toml
+        run: |
+          version=${{ github.event.inputs.tag }}
+          version=${version#v}
+          echo "Setting version to $version"
+          sed -i.bak "s/^version = .*/version = \"$version\"/" pyproject.toml
+          rm pyproject.toml.bak
+
+      - name: Build Package
+        run: hatch build
+
+      - name: Upload dist/
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    name: Publish to PyPI via OIDC
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      id-token: write  # Required for OIDC Trusted Publisher authentication
+    steps:
+      - name: Download dist/
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to PyPI using Trusted Publisher (OIDC)
+        uses: pypa/gh-action-pypi-publish@release/v1
+```
+
+Note that the code fragment above does not contain automated updates 
+of a changelog file nor a GitHub release of the package.
+
+---
+
+## Legacy documentation:
+
 Creates an api token for trusted publishing in pypi.
 
 ## [Getting started](https://docs.pypi.org/trusted-publishers/)
