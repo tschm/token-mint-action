@@ -1,8 +1,12 @@
 .DEFAULT_GOAL := help
 
+# Create a virtual environment using uv with Python 3.12
+uv:
+	@curl -LsSf https://astral.sh/uv/install.sh | sh
+
 .PHONY: fmt
-fmt:  ## Run autoformatting and linting
-	@pre-commit run --all-files
+fmt:  uv ## Run autoformatting and linting
+	uvx pre-commit run --all-files
 
 .PHONY: help
 help:  ## Display this help screen

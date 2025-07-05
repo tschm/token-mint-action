@@ -5,11 +5,11 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/tschm/token-mint-action/badge)](https://www.codefactor.io/repository/github/tschm/token-mint-action)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://github.com/renovatebot/renovate)
 
-## ⚠️ **WARNING** 
+## ⚠️ **WARNING**
 
-This action is today obsolete and is no longer maintained. 
-We recommend using [PyPI's native trusted publishing](https://docs.pypi.org/trusted-publishers/) 
-directly with GitHub Actions instead. See the [PyPI documentation](https://docs.pypi.org/trusted-publishers/using-a-publisher/) 
+This action is today obsolete and is no longer maintained.
+We recommend using [PyPI's native trusted publishing](https://docs.pypi.org/trusted-publishers/)
+directly with GitHub Actions instead. See the [PyPI documentation](https://docs.pypi.org/trusted-publishers/using-a-publisher/)
 for more information.
 
 ## A note on publishing Python packages
@@ -20,12 +20,14 @@ and secure integrations like PyPI's Trusted Publisher (OIDC), we can now build
 and release Python packages more securely, reproducibly and with less manual work.
 
 We share the process we follow. We split tagging, building, publication to PyPI
-into distinct jobs within the same workflow: 
+into distinct jobs within the same workflow:
 
 ```yaml
-# Manual Release Workflow for Python Package using Hatch and Trusted Publisher (OIDC)
+# Manual Release Workflow for Python Package using Hatch and
+# Trusted Publisher (OIDC)
 #
-# This workflow implements a secure, maintainable release pipeline by separating concerns:
+# This workflow implements a secure, maintainable release pipeline
+# by separating concerns:
 #   - 🔖 Tagging the release (Git tag)
 #   - 🏗️ Building the package with Hatch
 #   - 🚀 Publishing to PyPI using OIDC (no passwords or secrets)
@@ -60,7 +62,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create Git Tag
-        run: | 
+        run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
           git tag ${{ github.event.inputs.tag }}
@@ -120,12 +122,12 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
 ```
 
-Note that the code fragment above does not contain automated updates 
+Note that the code fragment above does not contain automated updates
 of a changelog file nor a GitHub release of the package.
 
 ---
 
-## Legacy documentation:
+## Legacy documentation
 
 Creates an api token for trusted publishing in pypi.
 
