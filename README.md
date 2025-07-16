@@ -69,7 +69,7 @@ jobs:
           git push origin ${{ github.event.inputs.tag }}
 
   build:
-    name: Build with Hatch and Update Changelog
+    name: Build with Hatch
     runs-on: ubuntu-latest
     needs: tag
     steps:
